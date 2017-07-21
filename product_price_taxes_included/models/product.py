@@ -103,6 +103,5 @@ class ProductProduct(models.Model):
     _columns = {
         'lst_price': old_fields.function(
             _product_lst_price, fnct_inv=_set_product_lst_price, type='float',
-            string='Public Price',
-            digits_compute=dp.get_precision('Product Price')),
+            string='Public Price'),
     }
