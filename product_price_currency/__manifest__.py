@@ -19,8 +19,8 @@
 #
 ##############################################################################
 {
-    'name': 'Planned Price for Products',
-    'version': '9.0.1.0.0',
+    'name': 'Planned Price by Currency Exchange',
+    'version': '10.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -30,19 +30,18 @@
     'images': [
     ],
     'depends': [
-        'product',
+        'product_computed_list_price',
     ],
     'data': [
         'product_view.xml',
-        'wizard/product_update_from_planned_price_wizard_view.xml',
-        'data/cron_data.xml',
+        'data.xml',
     ],
     'demo': [
         'demo/product_demo.xml',
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

@@ -19,19 +19,19 @@ class product_pricelist(models.Model):
         help='Price for product specified on the context',
     )
 
-    @api.one
-    # TODO make multi
+    @api.multi
     def _get_price(self):
-        product_id = self._context.get('product_id', False)
-        template_id = self._context.get('template_id', False)
-        if product_id:
-            price = self.env['product.product'].browse(
-                product_id).with_context(pricelist=self.id).price
-            self.price = price
-        elif template_id:
-            price = self.env['product.template'].browse(
-                template_id).with_context(pricelist=self.id).price
-            self.price = price
+        for prod in self:
+            product_id = prod._context.get('product_id', False)
+            template_id = prod._context.get('template_id', False)
+            if product_id:
+                price = prod.env['product.product'].browse(
+                    product_id).with_context(pricelist=prod.id).price
+                prod.price = price
+            elif template_id:
+                price = prod.env['product.template'].browse(
+                    template_id).with_context(pricelist=prod.id).price
+                prod.price = price
 
     # not yet implemented
     # @api.multi
